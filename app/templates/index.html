@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    index
+
+{% endblock %}
+
+{% block content %}
+
+    <h2 style="font-family: 'Playfair Display', serif; text-align: center;"> Корпус анекдотов</h2>
+    <h6 style="font-family: 'Playfair Display', serif; text-align: center; color: #9F82CA"> В нашем корпусе вы можете искать слова из разных смешных (и неочень) анекдотов!!</h6>
+
+    <p style="text-align: center;"><a class="nav-link" href="/questions">
+        <img src="https://kartinki.pibig.info/uploads/posts/2023-04/1681106498_kartinki-pibig-info-p-kartinka-lupa-dlya-prezentatsii-arti-18.png" style="width:80px;">
+    </a>
+    <h6 style="font-family: 'Playfair Display', serif; text-align: center;">нажмите на лупу, чтобы перейти к поиску (или выберете поиск в меню)</h6>
+<br>
+<br>
+<h6 style="font-family: 'Playfair Display', serif; text-align: center;">Что можно вводить в поиск:</h6>
+        <h6 style="font-family: 'Playfair Display', serif; text-align: left;">— просто слово выдаст предложения, в которых встречается искомое слово в любой форме</h6>
+		<h6 style="font-family: 'Playfair Display', serif; text-align: left;">— если добавить кавычки, то будут выдаваться предложения со словом именно в искомой форме</h6>
+		<h6 style="font-family: 'Playfair Display', serif; text-align: left;">
+		— если добавить к слову тег через знак плюс, то будут искаться предложения с запрашиваемым словом, имеющим запрашиваемый тег</h6>
+		<h6 style="font-family: 'Playfair Display', serif; text-align: left;">
+		— если ввести в запрос только тег, то будут выдаваться все предложения, где есть слова с заданным тегом</h6>
+<br>
+		<h6 style="font-family: 'Playfair Display', serif; text-align: center;">Список тегов:</h6>
+		<h6 style="font-family: 'Playfair Display', serif; text-align: left;">NOUN, ADJF, ADJS, COMP, VERB, INFN, PRTF,
+               PRTS, GRND, NUMR, ADVB, NPRO, PRED, PREP,
+               CONJ, PRCL, INTJ</h6>
+<br>
+        <h6 style="font-family: 'Playfair Display', serif; text-align: center;">Что можно поискать:</h6>
+        <h6 style="font-family: 'Playfair Display', serif; text-align: left;">— Вовочка — результатом будут предложения с именем <i>Вовочка</i></h6>
+        <h6 style="font-family: 'Playfair Display', serif; text-align: left;">— заяц+NOUN — результатом будут предложения с существительным <i>заяц</i></h6>
+
+        <h6 style="font-family: 'Playfair Display', serif; text-align: left;">— шефиню — результатом будут предложения со словом <i>шефиня</i></h6>
+        <h6 style="font-family: 'Playfair Display', serif; text-align: left;">— спрашивает+VERB — резултатом будут предложения с глаголом <i>спрашивает</i></h6>
+		<h6 style="font-family: 'Playfair Display', serif; text-align: left;">— деревенская+ADJF "история" деревня — результатом будут предложения с прилагательным женского рода <i>деревенская</i>, со словом <i>история</i> (именно в этой форме) и со словом <i>деревня</i> в любой форме</h6>
+<br>
+
+
+{% endblock %}
