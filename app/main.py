@@ -14,6 +14,7 @@ import re
 import itertools
 from flask import Blueprint
 
+#обрабатываем файл с текстами
 sent_source = {}
 
 with open("anecdotes.txt", "r", encoding="utf-8") as file:
@@ -46,7 +47,7 @@ for item, key in zip(myList, lemm_tuple):
     new_item = item + (key,)
     result.append(new_item)
 
-import sqlite3
+#создаем базу данных с текстами, лемматизированными текстами и источниками
 
 conn = sqlite3.connect("db_anectodes.db")
 cur = conn.cursor()
@@ -97,7 +98,10 @@ pos_taggers = ('NOUN', 'ADJF', 'ADJS', 'COMP', 'VERB', 'INFN', 'PRTF',
 
 
 conn.commit()
+
 print("предобработка выполнена")
+
+#теперь работаем над приложением
 
 app = Flask(__name__)
 
@@ -128,12 +132,12 @@ def process_page():
     return redirect(url_for('thanks_page', perem=zapros))
 
 
-#страница с извинениями
+#страница с извинениями на случай, если слов в корпусе не найдется
 @app.route('/sorry')
 def sorry_page():
    return render_template('sorry.html')
 
-#страница с результатами
+#страница с результатами, куда мы передали переменную с запросом
 @app.route('/results/<perem>')
 def thanks_page(perem):
     print(f"получена переменная {perem}")
