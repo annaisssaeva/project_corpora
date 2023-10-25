@@ -18,26 +18,108 @@
 <br>
 <br>
 <h6 style="font-family: 'Playfair Display', serif; text-align: center;">Что можно вводить в поиск:</h6>
-        <h6 style="font-family: 'Playfair Display', serif; text-align: left;">— просто слово выдаст предложения, в которых встречается искомое слово в любой форме</h6>
-		<h6 style="font-family: 'Playfair Display', serif; text-align: left;">— если добавить кавычки, то будут выдаваться предложения со словом именно в искомой форме</h6>
+        <h6 style="font-family: 'Playfair Display', serif; text-align: left;">— просто слово, чтобы найти все предложения, где это слово встречается в любой форме</h6>
+		<h6 style="font-family: 'Playfair Display', serif; text-align: left;">— слово в двойных кавычках, чтобы найти все предложения только с этой словоформой</h6>
 		<h6 style="font-family: 'Playfair Display', serif; text-align: left;">
-		— если добавить к слову тег через знак плюс, то будут искаться предложения с запрашиваемым словом, имеющим запрашиваемый тег</h6>
+		— можно добавить к слову тег через знак плюс, чтобы найти все предложения с конкретной словоформой, имеющей запрашиваемый тег</h6>
 		<h6 style="font-family: 'Playfair Display', serif; text-align: left;">
-		— если ввести в запрос только тег, то будут выдаваться все предложения, где есть слова с заданным тегом</h6>
+		— можно ввести в запрос только тег, чтобы найти все предложения, где есть слово с заданным тегом</h6>
 <br>
-		<h6 style="font-family: 'Playfair Display', serif; text-align: center;">Список тегов:</h6>
-		<h6 style="font-family: 'Playfair Display', serif; text-align: left;">NOUN, ADJF, ADJS, COMP, VERB, INFN, PRTF,
-               PRTS, GRND, NUMR, ADVB, NPRO, PRED, PREP,
-               CONJ, PRCL, INTJ</h6>
-<br>
-        <h6 style="font-family: 'Playfair Display', serif; text-align: center;">Что можно поискать:</h6>
-        <h6 style="font-family: 'Playfair Display', serif; text-align: left;">— Вовочка — результатом будут предложения с именем <i>Вовочка</i></h6>
-        <h6 style="font-family: 'Playfair Display', serif; text-align: left;">— заяц+NOUN — результатом будут предложения с существительным <i>заяц</i></h6>
+		<h6 style="font-family: 'Playfair Display', serif; text-align: left;">
+		Запрос состоит из последовательных токенов (слов/POS-тегов) длиной 1-3, к каждому токену применяются правила выше. Результатом поиска будут предложения, где соответствующие запросу токены находятся в том же порядке, что и в запросе. Расстояние между элементами запроса равно 1</h6>
 
-        <h6 style="font-family: 'Playfair Display', serif; text-align: left;">— шефиню — результатом будут предложения со словом <i>шефиня</i></h6>
-        <h6 style="font-family: 'Playfair Display', serif; text-align: left;">— спрашивает+VERB — резултатом будут предложения с глаголом <i>спрашивает</i></h6>
-		<h6 style="font-family: 'Playfair Display', serif; text-align: left;">— деревенская+ADJF "история" деревня — результатом будут предложения с прилагательным женского рода <i>деревенская</i>, со словом <i>история</i> (именно в этой форме) и со словом <i>деревня</i> в любой форме</h6>
 <br>
+        <h6 style="font-family: 'Playfair Display', serif; text-align: center;">Какие могут быть запросы:</h6>
+        <h6 style="font-family: 'Playfair Display', serif; text-align: left;">— "идет" — результатом будут предложения только с данной словоформой <i>идет</i></h6>
+        <h6 style="font-family: 'Playfair Display', serif; text-align: left;">— спрашивает+VERB — результатом будут предложения с глаголом<i>спрашивает</i></h6>
 
+        <h6 style="font-family: 'Playfair Display', serif; text-align: left;">— мужик — результатом будут предложения, где данное слово встречается в любой форме <i>мужика</i></h6>
+        <h6 style="font-family: 'Playfair Display', serif; text-align: left;">— ADJF NOUN — результатом будут предложения, где встречается сочетание из прилагательного и существительного</h6>
+		<h6 style="font-family: 'Playfair Display', serif; text-align: left;">— деревенская+ADJF "история" деревня — результатом будут предложения с прилагательным в данной словоформе <i>деревенская</i>, со словом <i>история</i> (именно в этой форме) и со словом <i>деревня</i> в любой форме</h6>
+<br>
+		<h6 style="font-family: 'Playfair Display', serif; text-align: left;">Список тегов:</h6>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%">
+<col width="40%">
+<col width="46%">
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Граммема</th>
+<th class="head">Значение</th>
+<th class="head">Примеры</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>NOUN</td>
+<td>имя существительное</td>
+<td>хомяк</td>
+</tr>
+<tr class="row-odd"><td>ADJF</td>
+<td>имя прилагательное (полное)</td>
+<td>хороший</td>
+</tr>
+<tr class="row-even"><td>ADJS</td>
+<td>имя прилагательное (краткое)</td>
+<td>хорош</td>
+</tr>
+<tr class="row-odd"><td>COMP</td>
+<td>компаратив</td>
+<td>лучше, получше, выше</td>
+</tr>
+<tr class="row-even"><td>VERB</td>
+<td>глагол (личная форма)</td>
+<td>говорю, говорит, говорил</td>
+</tr>
+<tr class="row-odd"><td>INFN</td>
+<td>глагол (инфинитив)</td>
+<td>говорить, сказать</td>
+</tr>
+<tr class="row-even"><td>PRTF</td>
+<td>причастие (полное)</td>
+<td>прочитавший, прочитанная</td>
+</tr>
+<tr class="row-odd"><td>PRTS</td>
+<td>причастие (краткое)</td>
+<td>прочитана</td>
+</tr>
+<tr class="row-even"><td>GRND</td>
+<td>деепричастие</td>
+<td>прочитав, рассказывая</td>
+</tr>
+<tr class="row-odd"><td>NUMR</td>
+<td>числительное</td>
+<td>три, пятьдесят</td>
+</tr>
+<tr class="row-even"><td>ADVB</td>
+<td>наречие</td>
+<td>круто</td>
+</tr>
+<tr class="row-odd"><td>NPRO</td>
+<td>местоимение-существительное</td>
+<td>он</td>
+</tr>
+<tr class="row-even"><td>PRED</td>
+<td>предикатив</td>
+<td>некогда</td>
+</tr>
+<tr class="row-odd"><td>PREP</td>
+<td>предлог</td>
+<td>в</td>
+</tr>
+<tr class="row-even"><td>CONJ</td>
+<td>союз</td>
+<td>и</td>
+</tr>
+<tr class="row-odd"><td>PRCL</td>
+<td>частица</td>
+<td>бы, же, лишь</td>
+</tr>
+<tr class="row-even"><td>INTJ</td>
+<td>междометие</td>
+<td>ой</td>
+</tr>
+</tbody>
+</table>
 
 {% endblock %}
