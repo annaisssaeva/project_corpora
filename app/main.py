@@ -7,8 +7,6 @@ from nltk.tokenize import word_tokenize
 from pymystem3 import Mystem
 m = Mystem()
 import ast
-import re
-import sqlite3
 import sqlite3
 from flask import Flask, url_for, render_template, request, redirect
 import requests
@@ -16,10 +14,89 @@ import re
 import itertools
 from flask import Blueprint
 
+sent_source = {}
+
+with open("anecdotes.txt", "r", encoding="utf-8") as file:
+    for source in file.read().split("\n\n\n")[1:]:
+        for part in source.split("\n\n")[1:]:
+            link = source.split("\n\n")[0]
+            for sent in sent_tokenize(part):
+                sent_source[sent] = link
+
+def lemmatize(text):
+  lemmas = m.lemmatize(text)
+  lemm_sample = ''.join(lemmas)
+  return lemm_sample
+
+spisok = []
+for sent in sent_source:
+    sent = lemmatize(sent)
+    sent = sent.rstrip()
+    spisok.append(lemmatize(sent))
+
+keys = list(sent_source.keys())
+values = list(sent_source.values())
+myList = list(zip(keys, values))
+
+lemm_tuple = tuple(spisok)
+
+result = []
+for item, key in zip(myList, lemm_tuple):
+    # Соединение элементов из списка my_tuple и значений из кортежа my_keys
+    new_item = item + (key,)
+    result.append(new_item)
+
+import sqlite3
+
+conn = sqlite3.connect("db_anectodes.db")
+cur = conn.cursor()
+
+cur.execute(
+    """
+CREATE TABLE IF NOT EXISTS texts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    text TEXT,
+    lemm_text TEXT,
+    source TEXT
+
+)
+"""
+)
+
+conn.commit()
+
+def exception(err_sent, error):
+    with open("error.txt", "a+") as file:
+        data = f"{error}: {err_sent}"
+        file.write(data)
+        file.write("\n")
+
+def write_to_db(sentence, lemm_sentence, url):
+    cur.execute(
+        """
+        INSERT INTO texts
+            (text, lemm_text, source) VALUES (?, ?, ?)
+        """,
+        (
+            sentence,
+            lemm_sentence,
+            url
+        ),
+    )
+    conn.commit()
+
+for res in result:
+    try:
+        write_to_db(res[0], res[2], res[1])
+    except Exception as e:
+        exception(sent, e)
+
 pos_taggers = ('NOUN', 'ADJF', 'ADJS', 'COMP', 'VERB', 'INFN', 'PRTF',
                'PRTS', 'GRND', 'NUMR', 'ADVB', 'NPRO', 'PRED', 'PREP',
                'CONJ', 'PRCL', 'INTJ')
 
+
+conn.commit()
 print("предобработка выполнена")
 
 app = Flask(__name__)
